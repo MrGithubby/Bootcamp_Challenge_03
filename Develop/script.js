@@ -7,7 +7,6 @@ let promptRunning = true // Variable to determine whether to continue running th
 
 // TODO: Get user input to create and return an array of employee objects
 
-
 // Collect Employee Information
 const collectEmployees = function() {
   let employeeInfo = { 
@@ -31,22 +30,23 @@ const collectEmployees = function() {
 
 // while(promptRunning){
 //   collectEmployees();
-// }
-
-
+// } 
 
 
 // Display the average salary
-const displayAverageSalary = function(employeesArray) {
-  // TODO: Calculate and display the average salary
+const displayAverageSalary = function() {
+  let employeeSalary = 0;
   if (employeesArray.length === 0){
     return 0;
   } else {
     for (let i = 0; i<employeesArray.length; i++){
-      i += employeesArray.salary[i];
+      employeeSalary += employeesArray[i].salary;
     }
+    employeeSalary = employeeSalary / (i+1)
+    return employeeSalary
   } 
 }
+
 
 // Select a random employee
 const getRandomEmployee = function(employeesArray) {

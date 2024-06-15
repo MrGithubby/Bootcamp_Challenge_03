@@ -25,7 +25,7 @@ const collectEmployees = function() {
       promptRunning = false;
     }
   }
-  return employeesArray
+  return employeesArray;
 }; 
 
 

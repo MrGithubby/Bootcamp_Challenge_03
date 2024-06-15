@@ -1,40 +1,37 @@
 // Get a reference to the #add-employees-btn element
 const addEmployeesBtn = document.querySelector('#add-employees-btn');
 
-// Collect employee data
-let employeesArray = [] // Array to hold the values of responses.
-let promptRunning = true // Variable to determine whether to continue running the function or not. 
-
-// TODO: Get user input to create and return an array of employee objects
-
 // Collect Employee Information
 const collectEmployees = function() {
-  let employeeInfo = { 
-    firstName: "",
-    lastName: "",
-    salary: undefined
-  };
-// Define the Employee Info Object?
-  employeeInfo.firstName = prompt("Enter your first name:");
-  employeeInfo.lastName = prompt("Enter your last name:");
-  employeeInfo.salary = prompt("Enter your salary:");
-  employeesArray.push(employeeInfo)
-
-// Prompt the User to Continue Running?
-  userContinues = confirm("Do you want to add another Employee?")
-  if (!userContinues){
-    console.log("User clicked Cancel.");
-    promptRunning = false;
+  let employeesArray = [] // Array to hold the values of responses.
+  let promptRunning = true // Variable to determine whether to continue running the function or not. 
+  const employeeAddition = function() {
+    let employeeInfo = { 
+      firstName: "",
+      lastName: "",
+      salary: undefined
+    };
+  // Define the Employee Info Object?
+    employeeInfo.firstName = prompt("Enter your first name:");
+    employeeInfo.lastName = prompt("Enter your last name:");
+    employeeInfo.salary = parseInt(prompt("Enter your salary:"));
+    employeesArray.push(employeeInfo)
+  } 
+  while (promptRunning){
+    employeeAddition();
+    userContinues = confirm("Do you want to add another Employee?")
+    if (!userContinues){
+      console.log("User clicked Cancel.");
+      promptRunning = false;
+    }
   }
+  return employeesArray
 }; 
 
-// while(promptRunning){
-//   collectEmployees();
-// } 
 
 
 // Display the average salary
-const displayAverageSalary = function() {
+const displayAverageSalary = function(employeesArray) {
   let employeeSalary = 0;
   if (employeesArray.length === 0){
     return 0;
@@ -42,7 +39,7 @@ const displayAverageSalary = function() {
     for (let i = 0; i<employeesArray.length; i++){
       employeeSalary += employeesArray[i].salary;
     }
-    employeeSalary = employeeSalary / (i+1)
+    employeeSalary = employeeSalary / (employeesArray.length+1)
     return employeeSalary
   } 
 }
@@ -50,7 +47,8 @@ const displayAverageSalary = function() {
 
 // Select a random employee
 const getRandomEmployee = function(employeesArray) {
-  // TODO: Select and display a random employee
+  const randomIndex = Math.floor(Math.random() * employeesArray.length)
+  return employeesArray[randomIndex]
 }
 
 /*

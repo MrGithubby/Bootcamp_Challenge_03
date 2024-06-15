@@ -3,32 +3,36 @@ const addEmployeesBtn = document.querySelector('#add-employees-btn');
 
 // Collect employee data
 let employeesArray = [] // Array to hold the values of responses.
-let promptingRunning = true // Variable to determine whether to continue running the function or not. 
+let promptRunning = true // Variable to determine whether to continue running the function or not. 
 
 // TODO: Get user input to create and return an array of employee objects
+
+
+// Collect Employee Information
 const collectEmployees = function() {
   let employeeInfo = { 
     firstName: "",
     lastName: "",
     salary: undefined
-  }
-
+  };
+// Define the Employee Info Object?
   employeeInfo.firstName = prompt("Enter your first name:");
   employeeInfo.lastName = prompt("Enter your last name:");
   employeeInfo.salary = prompt("Enter your salary:");
-  userContinues = confirm("Do you want to add another Employee?")
-
-  if (userContinues) {
-    console.log("User clicked OK.");
-  } else {
-    console.log("User clicked Cancel.");
-    promptingRunning = false;
-  }
-
   employeesArray.push(employeeInfo)
 
-  return promptingRunning
-}
+// Prompt the User to Continue Running?
+  userContinues = confirm("Do you want to add another Employee?")
+  if (!userContinues){
+    console.log("User clicked Cancel.");
+    promptRunning = false;
+  }
+}; 
+
+// while(promptRunning){
+//   collectEmployees();
+// }
+
 
 
 

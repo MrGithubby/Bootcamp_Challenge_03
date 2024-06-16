@@ -2,8 +2,8 @@
 const addEmployeesBtn = document.querySelector('#add-employees-btn');
 
 // Collect Employee Information
+let employeesArray = [] // Array to hold the values of responses.
 const collectEmployees = function() {
-  let employeesArray = [] // Array to hold the values of responses.
   let promptRunning = true // Variable to determine whether to continue running the function or not. 
   const employeeAddition = function() {
     let employeeInfo = { 
@@ -15,6 +15,9 @@ const collectEmployees = function() {
     employeeInfo.firstName = prompt("Enter your first name:");
     employeeInfo.lastName = prompt("Enter your last name:");
     employeeInfo.salary = parseInt(prompt("Enter your salary:"));
+    if (isNaN(employeeInfo.salary)) {
+      employeeInfo.salary = 0;
+    }
     employeesArray.push(employeeInfo)
   } 
   while (promptRunning){
@@ -33,22 +36,30 @@ const collectEmployees = function() {
 // Display the average salary
 const displayAverageSalary = function(employeesArray) {
   let employeeSalary = 0;
-  if (employeesArray.length === 0){
-    return 0;
-  } else {
-    for (let i = 0; i<employeesArray.length; i++){
-      employeeSalary += employeesArray[i].salary;
+  const averageSalaryCalculation = function() {
+    if (employeesArray.length === 0){
+      return 0;
+    } else {
+      for (let i = 0; i<employeesArray.length; i++){
+        employeeSalary += employeesArray[i].salary;
+      }
+      employeeSalary = employeeSalary / (employeesArray.length)
     }
-    employeeSalary = employeeSalary / (employeesArray.length+1)
     return employeeSalary
-  } 
+  }
+  averageSalary = averageSalaryCalculation()
+  console.log(`The average employee salary between our ${employeesArray.length} employees(s) is ${averageSalary}`)
 }
 
 
 // Select a random employee
 const getRandomEmployee = function(employeesArray) {
-  const randomIndex = Math.floor(Math.random() * employeesArray.length)
-  return employeesArray[randomIndex]
+  const randomSelection = function() {
+    const randomIndex = Math.floor(Math.random() * employeesArray.length)
+    return employeesArray[randomIndex]
+  }
+  employeeWinner = randomSelection()
+  console.log(`Congratulations to ${employeeWinner.firstName} ${employeeWinner.lastName} our random winner drawing!`)
 }
 
 /*
